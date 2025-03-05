@@ -10,6 +10,7 @@ class Game {
         this.bulletSpeed = 5;
         this.bulletSpeedMin = 1;
         this.bulletSpeedMax = 15;
+        this.bulletSpeedMax = 15;
         this.bulletSpeedStep = 1;
         this.bulletSize = 5;
         this.targetMinSize = 20;
