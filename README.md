@@ -39,14 +39,18 @@
 
 ## 快速开始
 
-1. 克隆项目到本地：
-   ```bash
-   git clone https://github.com/yourusername/fishing-game.git
-   ```
+1. 在线体验：
+   [点击这里](https://lingjing-ai.github.io/fishing/) 直接在浏览器中开始游戏
 
-2. 使用浏览器打开index.html文件
+2. 本地部署：
+   1. 克隆项目到本地：
+      ```bash
+      git clone https://github.com/yourusername/fishing-game.git
+      ```
 
-3. 开始游戏！
+   2. 使用浏览器打开index.html文件
+
+   3. 开始游戏！
 
 ## 项目结构
 
