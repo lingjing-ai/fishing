@@ -9,13 +9,13 @@ class Game {
         this.targets = [];
         this.bulletSpeed = 5;
         this.bulletSpeedMin = 1;
-        this.bulletSpeedMax = 10;
+        this.bulletSpeedMax = 15;
         this.bulletSpeedStep = 1;
         this.bulletSize = 5;
         this.targetMinSize = 20;
         this.targetMaxSize = 40;
         this.bulletLifetime = 200;
-        this.targetSpeed = 3;
+        this.targetSpeed = 1.5;
         this.maxTargets = 5;
         this.cannonAngle = -Math.PI/2; // 初始炮口朝上
         this.cannonRotateSpeed = 0.05; // 炮口旋转速度
