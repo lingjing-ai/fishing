@@ -4,21 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>捕鱼小游戏</title>
+    <script>
+        window.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    </script>
     <style>
         body {
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
             background-color: #f0f0f0;
             font-family: Arial, sans-serif;
             padding: 20px;
-            gap: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* PC端布局 */
+        @media (min-width: 769px) {
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .game-instructions {
+                margin-left: 0;
+                margin-top: 20px;
+            }
         }
         .game-container {
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin: 0 auto;
         }
         #gameInfo {
             margin-bottom: 20px;
@@ -29,11 +46,14 @@
             background-color: white;
         }
         .game-instructions {
-            width: 300px;
             padding: 20px;
             background-color: white;
             border: 2px solid #333;
             border-radius: 8px;
+            margin-left: 0;
+            margin-top: 20px;
+            width: 800px;
+            box-sizing: border-box;
         }
         .game-instructions h2 {
             margin-top: 0;
@@ -51,12 +71,62 @@
             margin: 5px 0;
             border-radius: 4px;
         }
+
+        /* 移动端控制按钮样式 */
+        .mobile-controls {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .mobile-controls button {
+            padding: 15px 30px;
+            margin: 5px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .mobile-controls button:active {
+            background-color: #45a049;
+        }
+
+        /* 移动端布局 */
+        @media (max-width: 768px) {
+            .mobile-controls {
+                display: block;
+            }
+            #gameCanvas {
+                width: 100%;
+                max-width: 800px;
+                height: auto;
+            }
+            .game-instructions {
+                width: auto;
+                max-width: 800px;
+                margin-top: 20px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="game-container">
         <div id="gameInfo">积分: <span id="score">100</span> | 子弹速度: <span id="bulletSpeed">5</span></div>
         <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <div class="mobile-controls">
+            <div>
+                <button id="rotateLeftBtn">←旋转</button>
+                <button id="fireBtn">发射</button>
+                <button id="rotateRightBtn">旋转→</button>
+            </div>
+            <div>
+                <button id="speedUpBtn">加速↑</button>
+                <button id="speedDownBtn">↓减速</button>
+            </div>
+        </div>
     </div>
     <div class="game-instructions">
         <h2>游戏说明</h2>

@@ -10,7 +10,6 @@ class Game {
         this.bulletSpeed = 5;
         this.bulletSpeedMin = 1;
         this.bulletSpeedMax = 15;
-        this.bulletSpeedMax = 15;
         this.bulletSpeedStep = 1;
         this.bulletSize = 5;
         this.targetMinSize = 20;
@@ -25,6 +24,45 @@ class Game {
         this.canvas.addEventListener('click', this.shoot.bind(this));
         document.addEventListener('keydown', this.handleKeyDown.bind(this));
         document.addEventListener('keyup', this.handleKeyUp.bind(this));
+
+        // 移动端控制按钮事件处理
+        if (window.isMobile) {
+            document.getElementById('fireBtn').addEventListener('click', () => this.shoot());
+            
+            document.getElementById('speedUpBtn').addEventListener('click', () => {
+                if (this.bulletSpeed < this.bulletSpeedMax) {
+                    this.bulletSpeed += this.bulletSpeedStep;
+                    this.updateScore();
+                }
+            });
+            
+            document.getElementById('speedDownBtn').addEventListener('click', () => {
+                if (this.bulletSpeed > this.bulletSpeedMin) {
+                    this.bulletSpeed -= this.bulletSpeedStep;
+                    this.updateScore();
+                }
+            });
+            
+            const rotateLeftBtn = document.getElementById('rotateLeftBtn');
+            const rotateRightBtn = document.getElementById('rotateRightBtn');
+            
+            const handleTouchStart = (direction) => {
+                this.keyState[direction] = true;
+            };
+            
+            const handleTouchEnd = (direction) => {
+                this.keyState[direction] = false;
+            };
+            
+            rotateLeftBtn.addEventListener('touchstart', () => handleTouchStart('ArrowLeft'));
+            rotateLeftBtn.addEventListener('touchend', () => handleTouchEnd('ArrowLeft'));
+            rotateRightBtn.addEventListener('touchstart', () => handleTouchStart('ArrowRight'));
+            rotateRightBtn.addEventListener('touchend', () => handleTouchEnd('ArrowRight'));
+            
+            // 防止移动端滑动和缩放
+            document.body.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+        }
+        
         this.init();
     }
 
